@@ -1,0 +1,31 @@
+Descompactar a pasta na pasta xamp/hdocs
+para isso tem que ter instalado (laravel, xamp, vscode e etc...)
+Abrir o git bash na pasta do projeto
+digite code .
+abrir o arquivo "env"
+cola o nome do banco de dados e criar um no phpmyadmin
+localhost/phpmyadmin
+criar banco e colocar o mesmo nome do banco que esta no arquivo "env"
+para criar as tabelas automaticamente, va No git bash e digite: 
+>> php artisan migrate
+No vs code, abrir a pasta : database/DatabaseSeeder.php
+voce vai encontrar o seguinte codigo :
+----------------------------------------------
+public function run()
+    {
+        // $this->call(UsersTableSeeder::class);
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('12345678'),
+        ]);
+    }
+-----------------------------------------------
+Para criar a o usuario altomaticamente ... va 
+no git bash digite : php artisan db:seed
+atualiza a tabela users no phpmyadmin 
+novamente no git bash digite :
+>> php artisan serve
+no browsie digite : localhost:8000/login
+coloque o usuario :admin@admin.com
+coloque a senha como : 12345678
